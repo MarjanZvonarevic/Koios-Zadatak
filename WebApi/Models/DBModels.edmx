@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KoiosZadatakModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Države">
+          <Key>
+            <PropertyRef Name="Država" />
+          </Key>
+          <Property Name="Država" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Naselja">
+          <Key>
+            <PropertyRef Name="NaseljeId" />
+          </Key>
+          <Property Name="NaseljeId" Type="int" Nullable="false" />
+          <Property Name="Naselje" Type="nvarchar" MaxLength="50" />
+          <Property Name="PBroj" Type="nchar" MaxLength="10" />
+          <Property Name="Država" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="KoiosZadatakModelStoreContainer">
+          <EntitySet Name="Države" EntityType="Self.Države" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Naselja" EntityType="Self.Naselja" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KoiosZadatakModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Države">
+          <Key>
+            <PropertyRef Name="Država" />
+          </Key>
+          <Property Name="Država" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Naselja">
+          <Key>
+            <PropertyRef Name="NaseljeId" />
+          </Key>
+          <Property Name="NaseljeId" Type="Int32" Nullable="false" />
+          <Property Name="Naselje" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PBroj" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Država" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Države" EntityType="Self.Države" />
+          <EntitySet Name="Naselja" EntityType="Self.Naselja" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KoiosZadatakModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="Države">
+            <EntityTypeMapping TypeName="KoiosZadatakModel.Države">
+              <MappingFragment StoreEntitySet="Države">
+                <ScalarProperty Name="Država" ColumnName="Država" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Naselja">
+            <EntityTypeMapping TypeName="KoiosZadatakModel.Naselja">
+              <MappingFragment StoreEntitySet="Naselja">
+                <ScalarProperty Name="NaseljeId" ColumnName="NaseljeId" />
+                <ScalarProperty Name="Naselje" ColumnName="Naselje" />
+                <ScalarProperty Name="PBroj" ColumnName="PBroj" />
+                <ScalarProperty Name="Država" ColumnName="Država" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

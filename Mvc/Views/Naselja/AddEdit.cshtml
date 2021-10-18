@@ -1,0 +1,37 @@
+﻿@model Mvc.Models.mvcNaseljaModel
+@{
+    ViewBag.Title = "AddEdit";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.NaseljeId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naselje)
+            @Html.EditorFor(model => model.Naselje)
+            @Html.ValidationMessageFor(model => model.Naselje)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PBroj)
+            @Html.EditorFor(model => model.PBroj)
+            @Html.ValidationMessageFor(model => model.PBroj)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Država)
+            @Html.EditorFor(model => model.Država)
+            @Html.ValidationMessageFor(model => model.Država)
+            @* @Html.DropDownList("")*@
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="reset" value="Reset" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+@section scripts{
+        @Scripts.Render("~/bundles/jqueryval");
+    }
+

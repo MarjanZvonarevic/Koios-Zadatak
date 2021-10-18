@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Mvc.Models.mvcNaseljaModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<p>
+
+    <a href="@Url.Action("AddEdit","Naselja")" class="btn btn-primary">Dodaj novo</a>
+    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>*@
+
+</p>
+
+@*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Unesi novo naselje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Naselje)
+                            @Html.EditorFor(model => model.Naselje)
+                            @Html.ValidationMessageFor(model => model.Naselje)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PBroj)
+                            @Html.EditorFor(model => model.PBroj)
+                            @Html.ValidationMessageFor(model => model.PBroj)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Država)
+                            @Html.EditorFor(model => model.Država)
+                            @Html.ValidationMessageFor(model => model.Država)
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                            <input type="reset" value="reset" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="container">
+    <div class="row">
+    
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th >
+                            @Html.DisplayNameFor(model => model.Naselje)
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.PBroj)
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.Država)
+                        </th>
+                        <th class="col-2 text-center">Alati</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Naselje)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PBroj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Država)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("AddEdit","Naselja", new { id = item.NaseljeId })" class="btn btn-primary">Uredi</a>
+                            <a onclick="Delete(@item.NaseljeId)" class="btn btn-danger text-white">Izbriši</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+    </div>
+</div>
+            @section scripts{
+                <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Brisanje naselja', 'Jeste li sigurni da želite izbrisati naselje?', function () {
+                window.location.href = '@Url.Action("Delete","Naselja")/' + id;
+            }, null);
+        }
+
+                </script>
+
+
+            }
